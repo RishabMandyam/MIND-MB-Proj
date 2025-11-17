@@ -26,5 +26,8 @@ pgs = pgs[~pgs.index.duplicated(keep='first')]
 
 combined = pd.concat([beh, fmri, meds, pgs], axis=1).reset_index()
 
+# remove duplicate columns
+combined = combined.loc[:, ~combined.columns.duplicated()]
+
 combined.to_csv('MINDMB_dataset.csv', index=False)
 print("MINDMB_dataset.csv created successfully.")
